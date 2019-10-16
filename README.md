@@ -14,6 +14,7 @@ A News Headlines Application built using React Native (iOS & Android)
 <h2>Requirements</h2>
 <ul>
   <li>NodeJS</li>
+  <li>React Native</li>
   <li>Xcode iPhone Simulator</li>
   <li>Android Studio Emulator</li>
 </ul>
