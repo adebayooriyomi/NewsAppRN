@@ -18,7 +18,8 @@ A mobile application built using React Native
 
 <h2>Setup Instructions</h2>
 <pre><code>git clone https://github.com/GetStream/react-native-example
-cd react-native-example
+cd NewsAppRN
 npm install
-cp .env.example .env
+react-native run-android
+react-native run-ios
 </code></pre>
