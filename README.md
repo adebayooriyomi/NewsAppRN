@@ -2,6 +2,8 @@
 
 A mobile application built using React Native
 
+<p><a target="_blank" rel="noopener noreferrer" href="/adebayooriyomi/NewsAppRN/blob/master/images/screenshots.jpg"><img src="/adebayooriyomi/NewsAppRN/blob/master/images/screenshots.jpg" alt="screenshots of NewsApp" style="max-width:100%;"></a></p>
+
 <h2>Features</h2>
 <ul>
   <li>Flatlist news feed</li>
