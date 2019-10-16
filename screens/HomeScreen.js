@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { Button, View, Text, Image, ImageBackground, ActivityIndicator } from 'react-native';
+import PropTypes from 'prop-types';
+import { Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Thumbnail, List, ListItem, Icon, Left, Body } from 'native-base';
 import Moment from 'moment';
 import networking from '../networking'
+import Web from './Webview'
 
 
 
 class HomeScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
-	 title: 'TOP HEADLINES',
+	 title: 'NEWS HEADLINES',
    headerStyle: {
       backgroundColor: '#fff',
     },
@@ -27,6 +29,10 @@ class HomeScreen extends React.Component {
 
     ),
  });
+
+ static propTypes = {
+		onItemPress: PropTypes.func.isRequired,
+	}
 
   state = {
       newsList: [],
@@ -62,6 +68,11 @@ class HomeScreen extends React.Component {
 		return formattedDate
 	}
 
+  handlePress(clickedItem){
+    const { navigate } = this.props.navigation;
+                        navigate('url', { item: clickedItem.url });
+	}
+
 
   render() {
     if(this.state.loading){
@@ -77,18 +88,20 @@ class HomeScreen extends React.Component {
         <List dataArray={this.state.newsList}
           renderRow={(item) =>
           <ListItem noBorder>
+          <TouchableOpacity style = {{flex: 1}} activeOpacity = { 0.4 } onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
           <Card style={{flex: 1}}>
             <CardItem>
               <Body>
                 <ImageBackground source={{uri: item.urlToImage}} resizeMode='cover' imageStyle={{ borderRadius: 5 }} style={{width: '100%', flex: 1}}>
                    <View style={{height: 250, borderRadius: 10}}/>
-                   </ImageBackground>
+                </ImageBackground>
                 <Text style={{marginBottom: 10, marginTop: 10}}>{item.source}</Text>
                 <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.title}</Text>
                 <Text style={{marginBottom: 10, marginTop: 10, color: 'gray'}}>{this.formatDate(item.publishedAt)}</Text>
               </Body>
             </CardItem>
           </Card>
+          </TouchableOpacity>
           </ListItem>
             }>
          </List>

@@ -3,14 +3,14 @@ import { Button, View, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './screens/HomeScreen';
-import DetailsScreen from './screens/DetailsScreen';
+import Web from './screens/Webview';
 
 
 
 
 const RootStack = createStackNavigator({
   Home: HomeScreen,
-  Details: DetailsScreen,
+  Details: Web,
 });
 
 export default createAppContainer(RootStack);
