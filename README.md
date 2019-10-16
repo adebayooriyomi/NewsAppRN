@@ -4,8 +4,8 @@ A mobile application built using React Native
 
 <h2>Features</h2>
 <ul>
-  <li>Flatlist News feed</li>
-  <li>WebView Displays News link</li>
+  <li>Flatlist news feed</li>
+  <li>WebView displays news link</li>
 </ul>
 
 
