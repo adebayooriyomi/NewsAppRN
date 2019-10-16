@@ -1,6 +1,6 @@
 # React Native News App
 
-A mobile application built using React Native
+A News Headlines Application built using React Native (iOS & Android)
 
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/adebayooriyomi/NewsAppRN/blob/master/images/screenshots.jpg"><img src="https://github.com/adebayooriyomi/NewsAppRN/blob/master/images/screenshots.jpg" alt="screenshots of NewsApp" style="max-width:100%;"></a></p>
 
