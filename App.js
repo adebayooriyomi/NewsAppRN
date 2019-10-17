@@ -6,7 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import Web from './screens/Webview';
 
 
-
+console.disableYellowBox = true;
 
 const RootStack = createStackNavigator({
   Home: HomeScreen,

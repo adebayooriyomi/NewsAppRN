@@ -24,5 +24,7 @@ A News Headlines Application built using React Native (iOS & Android)
 cd NewsAppRN
 npm install
 react-native run-android
+cd ios
+pod install
 react-native run-ios
 </code></pre>
