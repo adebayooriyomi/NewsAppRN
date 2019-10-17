@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { FlatList, Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Container, Header, Content, Card, CardItem, Thumbnail, List, ListItem, Icon, Left, Body } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body } from 'native-base';
 import Moment from 'moment';
 import networking from '../networking'
 import Web from './Webview'
@@ -29,10 +29,6 @@ class HomeScreen extends React.Component {
 
     ),
  });
-
- static propTypes = {
-		onItemPress: PropTypes.func.isRequired,
-	}
 
   state = {
       newsList: [],
@@ -68,12 +64,6 @@ class HomeScreen extends React.Component {
 		return formattedDate
 	}
 
-  handlePress(clickedItem){
-    const { navigate } = this.props.navigation;
-                        navigate('url', { item: clickedItem.url });
-	}
-
-
   render() {
     if(this.state.loading){
        return(
@@ -85,9 +75,8 @@ class HomeScreen extends React.Component {
     return (
       <Container>
         <Content>
-        <List dataArray={this.state.newsList}
-          renderRow={(item) =>
-          <ListItem noBorder>
+        <FlatList data={this.state.newsList}
+          renderItem={({item}) =>
           <TouchableOpacity style = {{flex: 1}} activeOpacity = { 0.4 } onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
           <Card style={{flex: 1}}>
             <CardItem>
@@ -102,9 +91,8 @@ class HomeScreen extends React.Component {
             </CardItem>
           </Card>
           </TouchableOpacity>
-          </ListItem>
             }>
-         </List>
+         </FlatList>
         </Content>
       </Container>
     );
