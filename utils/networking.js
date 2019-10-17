@@ -1,5 +1,4 @@
-
-
+import utils from './utils'
 
 export default {
     async fetchHeadlines(){
@@ -20,7 +19,7 @@ export default {
                url: String(obj.url),
                //Replace Image url with placeholder url if it is NULL
                urlToImage: String(obj.urlToImage === null ? "https://dummyimage.com/600x400/f7f7f7/000000&text=N" : obj.urlToImage),
-               publishedAt: String(obj.publishedAt)
+               publishedAt: String(utils.formatDate(obj.publishedAt))
              }
              articlesArray.push(article)
           })

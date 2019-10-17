@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body } from 'native-base';
-import Moment from 'moment';
-import networking from '../networking'
+import networking from '../utils/networking'
 import Web from './Webview'
 
 
@@ -22,7 +21,7 @@ class HomeScreen extends React.Component {
       fontWeight: 'bold',
     },
     headerRight: (
-      <Icon style={{fontSize: 25, marginRight: 15}}
+      <Icon style={styles.icon}
         onPress={navigation.getParam('reload')}
         name="refresh"
       />
@@ -57,14 +56,37 @@ class HomeScreen extends React.Component {
     this.fetchNews()
   }
 
-  formatDate (date) {
-    Moment.locale('en')
-    const dat = date;
-    const formattedDate = Moment(dat).startOf('hour').fromNow();
-		return formattedDate
-	}
+// FlatList Row  ====================================================
+   renderItem = ({ item }) => {
+    return(
+      <TouchableOpacity
+        style = {{flex: 1}}
+        activeOpacity = { 0.4 }
+        onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
+      <Card
+        style={{flex: 1}}>
+        <CardItem>
+          <Body>
+            <ImageBackground
+              source={{uri: item.urlToImage}}
+              resizeMode='cover'
+              imageStyle={{ borderRadius: 5 }}
+              style={styles.container}>
+               <View style={{height: 250, borderRadius: 10}}/>
+            </ImageBackground>
+            <Text style={styles.subtitle}>{item.source}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.subtitle}>{item.publishedAt}</Text>
+          </Body>
+        </CardItem>
+      </Card>
+      </TouchableOpacity>
+    )
+  }
+
 
   render() {
+    // ActivityIndicator  ====================================================
     if(this.state.loading){
        return(
          <View style={{flex: 1, justifyContent: "center"}}>
@@ -72,27 +94,14 @@ class HomeScreen extends React.Component {
          </View>
        )
      }
+     // FlatList  ====================================================
     return (
       <Container>
         <Content>
-        <FlatList data={this.state.newsList}
-          renderItem={({item}) =>
-          <TouchableOpacity style = {{flex: 1}} activeOpacity = { 0.4 } onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
-          <Card style={{flex: 1}}>
-            <CardItem>
-              <Body>
-                <ImageBackground source={{uri: item.urlToImage}} resizeMode='cover' imageStyle={{ borderRadius: 5 }} style={{width: '100%', flex: 1}}>
-                   <View style={{height: 250, borderRadius: 10}}/>
-                </ImageBackground>
-                <Text style={{marginBottom: 10, marginTop: 10}}>{item.source}</Text>
-                <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.title}</Text>
-                <Text style={{marginBottom: 10, marginTop: 10, color: 'gray'}}>{this.formatDate(item.publishedAt)}</Text>
-              </Body>
-            </CardItem>
-          </Card>
-          </TouchableOpacity>
-            }>
-         </FlatList>
+        <FlatList
+          data={this.state.newsList}
+          renderItem={this.renderItem}
+         />
         </Content>
       </Container>
     );
@@ -101,3 +110,23 @@ class HomeScreen extends React.Component {
 
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%'
+  },
+  icon:{
+    fontSize: 25,
+    marginRight: 15
+  },
+  title:{
+    fontSize: 18,
+    fontWeight: 'bold'
+    },
+  subtitle:{
+    marginBottom: 10,
+    marginTop: 10,
+    color: 'gray'
+  }
+});
