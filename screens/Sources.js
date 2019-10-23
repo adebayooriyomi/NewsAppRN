@@ -3,6 +3,7 @@ import { Container, Content, Header, Item, Input, Icon, Button, Card, Right, Car
 import { StyleSheet, FlatList, View, Image, Text, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import styles from '../Styles'
 import networking from '../utils/networking'
 
 
@@ -10,13 +11,6 @@ class Sources extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
 	 title: 'Publishers',
-   headerStyle: {
-      backgroundColor: '#fff',
-    },
-    headerTintColor: '#000',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
   });
 
 
@@ -68,7 +62,7 @@ class Sources extends React.Component {
           style={{flex: 1}}>
           <CardItem>
             <Body>
-              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.titleSmall}>{item.name}</Text>
             </Body>
             <Right>
               <Icon name="md-star-half" />
@@ -107,6 +101,7 @@ class Sources extends React.Component {
             data={listToDisplay}
             renderItem={this.renderItem}
             style={{padding:10}}
+
            />
         </Content>
       </Container>
@@ -115,31 +110,3 @@ class Sources extends React.Component {
 }
 
 export default Sources;
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%'
-  },
-  searchView:{
-    backgroundColor: '#eff0f1',
-    margin: 10,
-    paddingRight: 10,
-    paddingLeft:10,
-    borderRadius: 10,
-    borderColor: '#eff0f1',
-    borderWidth: 2
-  },
-  title:{
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
-    },
-  subtitle:{
-    marginBottom: 10,
-    marginTop: 10,
-    color: 'gray'
-  }
-});

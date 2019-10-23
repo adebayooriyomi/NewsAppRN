@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { FlatList, Button, View, Text, Image, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body } from 'native-base';
+import styles from '../Styles'
 import networking from '../utils/networking'
 import Web from './Webview'
 
@@ -10,21 +11,13 @@ import Web from './Webview'
 
 class HomeScreen extends React.Component {
 
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({navigation, navigationOptions}) => ({
 	 title: 'Top Stories',
-   headerStyle: {
-      backgroundColor: '#fff',
-    },
-    headerTintColor: '#000',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
     headerRight: (
       <Icon style={styles.icon}
         onPress={navigation.getParam('reload')}
         name="refresh"
       />
-
     ),
  });
 
@@ -68,6 +61,7 @@ class HomeScreen extends React.Component {
           <Body>
             <ImageBackground
               source={{uri: item.urlToImage}}
+              backgroundColor='whitesmoke'
               resizeMode='cover'
               imageStyle={{ borderRadius: 5 }}
               style={styles.container}>
@@ -107,25 +101,4 @@ class HomeScreen extends React.Component {
   }
 }
 
-
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%'
-  },
-  icon:{
-    fontSize: 25,
-    marginRight: 15
-  },
-  title:{
-    fontSize: 18,
-    fontWeight: 'bold'
-    },
-  subtitle:{
-    marginBottom: 10,
-    marginTop: 10,
-    color: 'gray'
-  }
-});

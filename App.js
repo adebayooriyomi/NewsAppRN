@@ -15,13 +15,37 @@ console.disableYellowBox = true;
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Details: Web,
-});
+},
+{
+defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#ed4b5f',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  }
+);
 
 const SourcesStack = createStackNavigator({
   Sources: Sources,
   Details: SourceView,
   WebView: Web,
-});
+},
+{
+defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#ed4b5f',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  }
+);
 
 
 export default createAppContainer(createBottomTabNavigator(
@@ -47,7 +71,7 @@ export default createAppContainer(createBottomTabNavigator(
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: 'black',
+      activeTintColor: '#ed4b5f',
       inactiveTintColor: 'gray',
     },
     animationEnabled: false,

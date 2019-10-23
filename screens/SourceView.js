@@ -3,6 +3,7 @@ import { StyleSheet, FlatList, Button, View, Text, Image, ImageBackground, Activ
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body } from 'native-base';
+import styles from '../Styles'
 import networking from '../utils/networking'
 import Web from './Webview'
 
@@ -12,13 +13,6 @@ class SourceView extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
 	 title: navigation.getParam('title'),
-   headerStyle: {
-      backgroundColor: '#fff',
-    },
-    headerTintColor: '#000',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
     headerRight: (
       <Icon style={styles.icon}
         onPress={navigation.getParam('reload')}
@@ -75,12 +69,13 @@ class SourceView extends React.Component {
           <Body>
             <ImageBackground
               source={{uri: item.urlToImage}}
+              backgroundColor='whitesmoke'
               resizeMode='cover'
               imageStyle={{ borderRadius: 5 }}
               style={styles.container}>
-               <View style={{height: 250, borderRadius: 10}}/>
+               <View style={{height: 150, borderRadius: 10}}/>
             </ImageBackground>
-            <Text style={styles.title}>{item.title}</Text>
+            <Text numberOfLines = {4} style={styles.titleSmall}>{item.title}</Text>
             <Text style={styles.subtitle}>{item.publishedAt}</Text>
           </Body>
         </CardItem>
@@ -88,7 +83,6 @@ class SourceView extends React.Component {
       </TouchableOpacity>
     )
   }
-
 
   render() {
     // ActivityIndicator  ====================================================
@@ -106,6 +100,7 @@ class SourceView extends React.Component {
         <FlatList
           data={this.state.newsList}
           renderItem={this.renderItem}
+          numColumns={2}
          />
         </Content>
       </Container>
@@ -113,26 +108,4 @@ class SourceView extends React.Component {
   }
 }
 
-
 export default SourceView;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%'
-  },
-  icon:{
-    fontSize: 25,
-    marginRight: 15
-  },
-  title:{
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: 'bold'
-    },
-  subtitle:{
-    marginBottom: 10,
-    marginTop: 10,
-    color: 'gray'
-  }
-});

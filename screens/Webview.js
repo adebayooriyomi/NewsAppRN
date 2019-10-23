@@ -6,10 +6,6 @@ import { WebView } from 'react-native-webview';
 
 
 class Web extends React.Component {
-    static navigationOptions = ({navigation}) => ({
-      headerTintColor: '#000'
-    });
-
 
     render() {
       const { navigation } = this.props;
