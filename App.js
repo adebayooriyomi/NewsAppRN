@@ -30,7 +30,7 @@ export default createAppContainer(createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Top Stories',
         tabBarIcon: ({ tintColor, focused }) => (
-          <Icon name={focused ? 'star' : 'ios-star-outline'} size={18} style={{color:tintColor}} />
+          <Icon name={focused ? 'md-globe' : 'md-globe'} size={18} style={{color:tintColor}} />
         ),
       },
     },

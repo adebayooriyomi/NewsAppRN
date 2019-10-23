@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Header, Item, Input, Icon, Button, Card, CardItem, Body } from 'native-base';
+import { Container, Content, Header, Item, Input, Icon, Button, Card, Right, CardItem, Body } from 'native-base';
 import { StyleSheet, FlatList, View, Image, Text, ImageBackground, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -70,6 +70,9 @@ class Sources extends React.Component {
             <Body>
               <Text style={styles.title}>{item.name}</Text>
             </Body>
+            <Right>
+              <Icon name="md-star-half" />
+            </Right>
           </CardItem>
         </Card>
         </TouchableOpacity>
