@@ -8,10 +8,10 @@ import Web from './Webview'
 
 
 
-class HomeScreen extends React.Component {
+class SourceView extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
-	 title: 'Top Stories',
+	 title: navigation.getParam('title'),
    headerStyle: {
       backgroundColor: '#fff',
     },
@@ -30,16 +30,23 @@ class HomeScreen extends React.Component {
 
   state = {
       newsList: [],
-      loading: true
+      loading: true,
+      newsId: ""
   }
 
    componentDidMount(){
-    this.fetchNews()
-    this.props.navigation.setParams({ reload: this.reload});
+    const { navigation } = this.props;
+    const newsId = navigation.getParam('id')
+    const newsName = navigation.getParam('name')
+    this.setState({
+        newsId: newsId,
+    })
+    this.fetchNews(newsId)
+    navigation.setParams({ reload: this.reload, title: newsName})
   }
 
-  async fetchNews(){
-    const list = await networking.fetchHeadlines()
+  async fetchNews(newsId){
+    const list = await networking.fetchHeadlines(newsId)
     console.log(list)
     this.setState({
         newsList: list,
@@ -52,7 +59,7 @@ class HomeScreen extends React.Component {
     this.setState({
         loading: true
     })
-    this.fetchNews()
+    this.fetchNews(this.state.newsId)
   }
 
 // FlatList Row  ====================================================
@@ -61,7 +68,7 @@ class HomeScreen extends React.Component {
       <TouchableOpacity
         style = {{flex: 1}}
         activeOpacity = { 0.4 }
-        onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
+        onPress={() => {this.props.navigation.navigate('WebView', { url: item.url })}}>
       <Card
         style={{flex: 1}}>
         <CardItem>
@@ -73,7 +80,6 @@ class HomeScreen extends React.Component {
               style={styles.container}>
                <View style={{height: 250, borderRadius: 10}}/>
             </ImageBackground>
-            <Text style={styles.subtitle}>{item.source}</Text>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.subtitle}>{item.publishedAt}</Text>
           </Body>
@@ -108,7 +114,7 @@ class HomeScreen extends React.Component {
 }
 
 
-export default HomeScreen;
+export default SourceView;
 
 const styles = StyleSheet.create({
   container: {
@@ -120,6 +126,7 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   title:{
+    marginTop: 10,
     fontSize: 18,
     fontWeight: 'bold'
     },
