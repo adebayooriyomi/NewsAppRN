@@ -7,6 +7,8 @@ A News Headlines Application built using React Native (iOS & Android)
 <h2>Features</h2>
 <ul>
   <li>Flatlist news feed</li>
+  <li>News Category</li>
+  <li>News Publishers</li>
   <li>WebView displays news link</li>
 </ul>
 
