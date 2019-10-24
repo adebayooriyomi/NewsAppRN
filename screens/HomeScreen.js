@@ -6,6 +6,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body
 import styles from '../Styles'
 import networking from '../utils/networking'
 import Web from './Webview'
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 
@@ -87,14 +88,13 @@ class HomeScreen extends React.Component {
      }
      // FlatList  ====================================================
     return (
-      <Container>
-        <Content>
+      <SafeAreaView>
         <FlatList
           data={this.state.newsList}
           renderItem={this.renderItem}
+          keyExtractor={(item, index) => index.toString()}
          />
-        </Content>
-      </Container>
+      </SafeAreaView>
     );
   }
 }

@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import styles from '../Styles'
 import networking from '../utils/networking'
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 
@@ -78,8 +79,7 @@ class SelectedCategory extends React.Component {
         }
    
        return (
-         <Container>
-           <Content searchBar rounded>
+         <SafeAreaView>
              <View searchBar rounded style={styles.searchView}>
                <Item style={{borderColor:'whitesmoke'}}>
                  <Icon name="ios-search" />
@@ -92,8 +92,7 @@ class SelectedCategory extends React.Component {
                style={{padding:5}}
                numColumns={2}
               />
-           </Content>
-         </Container>
+         </SafeAreaView>
        );
      }
    }

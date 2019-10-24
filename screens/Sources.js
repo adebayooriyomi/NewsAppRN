@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import styles from '../Styles'
 import networking from '../utils/networking'
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 class Sources extends React.Component {
@@ -86,8 +87,7 @@ class Sources extends React.Component {
      }
 
     return (
-      <Container>
-        <Content searchBar rounded>
+      <SafeAreaView>
           <View searchBar rounded style={styles.searchView}>
             <Item style={{borderColor:'whitesmoke'}}>
               <Icon name="ios-search" />
@@ -98,10 +98,8 @@ class Sources extends React.Component {
             data={listToDisplay}
             renderItem={this.renderItem}
             style={{padding:10}}
-
            />
-        </Content>
-      </Container>
+       </SafeAreaView>
     );
   }
 }

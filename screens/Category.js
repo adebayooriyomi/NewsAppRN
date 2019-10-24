@@ -7,6 +7,7 @@ import styles from '../Styles'
 import networking from '../utils/networking'
 import Web from './Webview'
 import { placeholder } from '@babel/types';
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 
@@ -95,15 +96,13 @@ class Category extends React.Component {
   render() {
      // FlatList  ====================================================
     return (
-      <Container>
-        <Content>
+      <SafeAreaView>
         <FlatList
           data={this.state.newsList}
           renderItem={this.renderItem}
           numColumns={2}
          />
-        </Content>
-      </Container>
+      </SafeAreaView>
     );
   }
 }
