@@ -12,7 +12,7 @@ import Web from './Webview'
 class SourceView extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
-	 title: navigation.getParam('title'),
+	 title: navigation.getParam('name'),
     headerRight: (
       <Icon style={styles.icon}
         onPress={navigation.getParam('reload')}
@@ -31,12 +31,11 @@ class SourceView extends React.Component {
    componentDidMount(){
     const { navigation } = this.props;
     const newsId = navigation.getParam('id')
-    const newsName = navigation.getParam('name')
     this.setState({
         newsId: newsId,
     })
     this.fetchNews(newsId)
-    navigation.setParams({ reload: this.reload, title: newsName})
+    navigation.setParams({ reload: this.reload})
   }
 
   async fetchNews(newsId){
@@ -63,7 +62,7 @@ class SourceView extends React.Component {
         style = {{flex: 1}}
         activeOpacity = { 0.4 }
         onPress={() => {this.props.navigation.navigate('WebView', { url: item.url })}}>
-      <Card
+      <Card transparent
         style={{flex: 1}}>
         <CardItem>
           <Body>
@@ -88,9 +87,7 @@ class SourceView extends React.Component {
     // ActivityIndicator  ====================================================
     if(this.state.loading){
        return(
-         <View style={{flex: 1, justifyContent: "center"}}>
-           <ActivityIndicator size="large" color="#000"/>
-         </View>
+           <ActivityIndicator style={styles.activityInd} size="large" color="#000"/>
        )
      }
      // FlatList  ====================================================

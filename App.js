@@ -8,6 +8,8 @@ import HomeScreen from './screens/HomeScreen';
 import Web from './screens/Webview';
 import Sources from './screens/Sources';
 import SourceView from './screens/SourceView';
+import Category from './screens/Category';
+import SelectedCategory from './screens/SelectedCategory';
 
 
 console.disableYellowBox = true;
@@ -47,6 +49,25 @@ defaultNavigationOptions: {
   }
 );
 
+const CategoryStack = createStackNavigator({
+  Category: Category,
+  SelectedCategory: SelectedCategory,
+  SourceView: SourceView,
+  WebView: Web,
+},
+{
+defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#ed4b5f',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  }
+);
+
 
 export default createAppContainer(createBottomTabNavigator(
   {
@@ -63,6 +84,14 @@ export default createAppContainer(createBottomTabNavigator(
         tabBarLabel: 'Publishers',
         tabBarIcon: ({ tintColor, focused }) => (
           <Icon name={focused ? 'md-paper' : 'md-paper'} size={18} style={{color:tintColor}} />
+        ),
+      },
+    },
+    Category: { screen: CategoryStack,
+      navigationOptions: {
+        tabBarLabel: 'Category',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Icon name={focused ? 'ios-keypad' : 'ios-keypad'} size={18} style={{color:tintColor}} />
         ),
       },
     },

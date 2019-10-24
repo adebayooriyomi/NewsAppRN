@@ -13,8 +13,7 @@ export default {
         : baseURL+'/top-headlines?country=us&apiKey='+apiKey
         try {
           let response = await fetch(fetchUrl);
-          const responseJson = await response.json();
-          console.log(responseJson)
+          let responseJson = await response.json();
           const articlesArray = []
           const allArticles = responseJson.articles
 
@@ -22,7 +21,7 @@ export default {
             // Convert All JSON Object value to String because some of them contains NULL
              const article = {
                source: String(obj.source.name),
-               title: String(obj.title),
+               title: (String(obj.title)),
                url: String(obj.url),
                //Replace Image url with placeholder url if it is NULL
                urlToImage: String(obj.urlToImage === null ? dummyImageUrl : obj.urlToImage),
@@ -37,11 +36,15 @@ export default {
         }
     },
     // All named sources with English news
-    async fetchSources() {
+    async fetchSources(category) {
+
+         //if called with parameter = "category" fetch with "category"  else fetch all 
+         const fetchUrl = category
+         ? baseURL+'/sources?category='+category+'&language=en&apiKey='+apiKey
+         : baseURL+'/sources?language=en&apiKey='+apiKey
+
         try {
-          let response = await fetch(
-            baseURL+'/sources?language=en&apiKey='+apiKey,
-          );
+          let response = await fetch(fetchUrl);
           const responseJson = await response.json();
           console.log(responseJson)
           const sourcesArray = []

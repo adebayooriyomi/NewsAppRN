@@ -38,4 +38,25 @@ export default StyleSheet.create({
     borderColor: '#eff0f1',
     borderWidth: 2
   },
+  whitesmokeBg: {
+    flex: 1, 
+    margin:5, 
+    backgroundColor: 'whitesmoke', 
+    borderRadius:10
+  },
+
+  activityBg: {
+    flex: 1, 
+    justifyContent: "center"
+  },
+
+  activityInd: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });

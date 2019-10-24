@@ -55,7 +55,7 @@ class HomeScreen extends React.Component {
         style = {{flex: 1}}
         activeOpacity = { 0.4 }
         onPress={() => {this.props.navigation.navigate('Details', { url: item.url })}}>
-      <Card
+      <Card transparent
         style={{flex: 1}}>
         <CardItem>
           <Body>
@@ -82,9 +82,7 @@ class HomeScreen extends React.Component {
     // ActivityIndicator  ====================================================
     if(this.state.loading){
        return(
-         <View style={{flex: 1, justifyContent: "center"}}>
-           <ActivityIndicator size="large" color="#000"/>
-         </View>
+           <ActivityIndicator style={styles.activityInd} size="large" color="#000"/>
        )
      }
      // FlatList  ====================================================
