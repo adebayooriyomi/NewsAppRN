@@ -27,7 +27,7 @@ class HomeScreen extends React.Component {
       loading: true
   }
 
-   componentDidMount(){
+ componentDidMount(){
     this.fetchNews()
     this.props.navigation.setParams({ reload: this.reload});
   }
